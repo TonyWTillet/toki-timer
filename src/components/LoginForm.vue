@@ -62,7 +62,6 @@ const emit = defineEmits(['prevStep', 'skip']);
           Login
         </Button>
         <Button variant="outline" class="w-full">
-          <GoogleIcon class="w-5 h-5 mr-2" />
           Login with Google
         </Button>
       </div>
