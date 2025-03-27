@@ -34,7 +34,11 @@
             <div class="space-y-5 max-w-4xl mx-auto text-center" v-if="steps === 1">
               
               <div class="flex justify-center items-center gap-x-4 text-gray-400 text-sm ">
-                <LoginForm :firstName="firstName" />
+                <LoginForm 
+                  :firstName="firstName"
+                  @update:step="steps = $event"
+                  @update:firstName="firstName = $event"
+                  @end="skip" />
               </div>
                 
               <div class="flex justify-center items-center gap-x-4 text-gray-400 text-sm">
@@ -72,8 +76,9 @@ watch(firstName, (newValue) => {
 });
 
 
-console.log(firstName);
 const steps = ref(0);
+const userSteps = ref(true);
+
 if (firstName.value !== '') {
   steps.value++;
 }
@@ -83,13 +88,13 @@ const nextStep = () => {
     console.log(steps.value);
 }
 
-const prevStep = () => {
-    steps.value--;
-    firstName.value = '';
-}
+const emit = defineEmits<{
+  (e: 'update:userSteps', value: boolean): void
+}>()
 
 const skip = () => {
-    steps.value++;
+  userSteps.value = false;
+  emit('update:userSteps', false);
 }
 
 </script>

@@ -8,7 +8,7 @@ const dismissBanner = () => {
 </script>
 
 <template>
-    <div v-if="banner" class="bg-indigo-600 w-screen mb-auto">
+    <div v-if="banner" class="bg-indigo-600 w-screen mb-auto absolute top-0 z-50">
         <div class="max-w-screen-xl mx-auto px-4 py-3 text-white sm:text-center md:px-8">
             <p class="font-medium">
                 We are currently in beta. Send us your feedback!

@@ -3,12 +3,10 @@
       <div class="bg-gray-800 h-screen w-screen flex flex-col justify-center items-center">
         <Header />
         
-        <div class="h-screen w-screen flex flex-col justify-center items-center" v-if="loginForm">
-          <UserSteps />
-        </div>
+        <div class="h-screen w-screen flex flex-col justify-center items-center">
+          <UserSteps @update:userSteps="userSteps = $event" v-if="userSteps" />
 
-        <div class="h-screen w-screen flex flex-col justify-center items-center" v-if="!loginForm">
-          <Pomodoro />
+          <Pomodoro v-else />
         </div>
        
       </div>
@@ -21,7 +19,5 @@
     import UserSteps from './UserSteps.vue';
     import Pomodoro from './Pomodoro.vue';
 
-    const loginForm = ref(true);
-
-
+    const userSteps = ref(true);
   </script>

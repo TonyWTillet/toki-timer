@@ -10,6 +10,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ArrowLeftIcon } from '@heroicons/vue/24/outline'
+
 const props = defineProps({
   firstName: {
     type: String,
@@ -17,15 +18,27 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['prevStep', 'skip']);
+const emit = defineEmits<{
+  (e: 'update:step', value: number): void
+  (e: 'end'): void
+  (e: 'update:firstName', value: string): void
+}>()
 
+const handlePrevious = () => {
+  emit('update:step', 0)
+  emit('update:firstName', '')
+}
+
+const handleSkip = () => {
+  emit('end')
+}
 
 </script>
 
 <template>
   <Card class="mx-auto max-w-3xl">
     <CardHeader>
-      <button @click="prevStep" class="text-gray-400 text-sm flex items-center gap-x-2 mb-4">
+      <button @click="handlePrevious" class="text-gray-400 text-sm flex items-center gap-x-2 mb-4">
           <ArrowLeftIcon class="w-5 h-5" /> 
           <span class="text-gray-400 text-sm">Previous</span>
       </button>
@@ -72,7 +85,7 @@ const emit = defineEmits(['prevStep', 'skip']);
         </a>
       </div>
       <div class="mt-4 text-center text-sm">
-        <button href="#" @click="skip" class="underline">
+        <button @click="handleSkip" class="underline">
           Skip and continue
         </button>
       </div>
