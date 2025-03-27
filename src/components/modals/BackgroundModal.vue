@@ -22,12 +22,12 @@
             </div>
 
             <!-- Tabs -->
-            <div class="flex space-x-2 mb-6">
+            <div class="flex space-x-2 mb-6 overflow-x-auto scrollbar-hide">
                 <button 
                     v-for="tab in tabs" 
                     :key="tab.id"
                     @click="activeTab = tab.id"
-                    class="px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                    class="px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
                     :class="activeTab === tab.id 
                         ? 'bg-indigo-500 text-white' 
                         : 'text-white/60 hover:text-white hover:bg-white/10'"
@@ -37,7 +37,7 @@
             </div>
 
             <!-- Content -->
-            <div class="flex-1 overflow-y-auto">
+            <div class="flex-1 overflow-y-auto custom-scrollbar">
                 <!-- Static Images Section -->
                 <div v-if="activeTab === 'static'" class="grid grid-cols-2 gap-4">
                     <div 
@@ -79,7 +79,7 @@
                         @click="selectBackground(background)"
                     >
                         <div 
-                            class="w-full h-full"
+                            class="w-full h-full absolute inset-0"
                             :class="background.animation"
                         ></div>
                         <div 
@@ -167,7 +167,7 @@ type Background = StaticBackground | AnimatedBackground | VideoBackground;
 
 const tabs = [
     { id: 'static', name: 'Static' },
-    { id: 'animated', name: 'Animated' },
+    { id: 'animated', name: 'Colors' },
     { id: 'videos', name: 'Videos' }
 ];
 
@@ -188,25 +188,47 @@ const staticBackgrounds: StaticBackground[] = [
 ];
 
 const animatedBackgrounds: AnimatedBackground[] = [
-    { id: 7, name: 'Gradient Flow', animation: 'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-gradient', type: 'animated' },
-    { id: 8, name: 'Soft Pulse', animation: 'bg-indigo-500/50 animate-pulse-slow', type: 'animated' },
-    { id: 9, name: 'Rainbow', animation: 'bg-rainbow animate-rainbow', type: 'animated' },
-    { id: 10, name: 'Wave', animation: 'bg-wave animate-wave', type: 'animated' },
-    { id: 11, name: 'Ocean Blue', animation: 'bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-500 animate-gradient', type: 'animated' },
-    { id: 12, name: 'Sunset', animation: 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 animate-gradient', type: 'animated' },
-    { id: 13, name: 'Forest Green', animation: 'bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 animate-gradient', type: 'animated' },
-    { id: 14, name: 'Purple Dream', animation: 'bg-gradient-to-r from-purple-500 via-fuchsia-500 to-pink-500 animate-gradient', type: 'animated' },
-    { id: 15, name: 'Aurora', animation: 'bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 animate-gradient', type: 'animated' },
-    { id: 16, name: 'Neon', animation: 'bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 animate-gradient', type: 'animated' }
+    { id: 1, name: 'Rose & Peach', animation: 'bg-cozy-sunset', type: 'animated' },
+    { id: 2, name: 'Ocean Blue', animation: 'bg-ocean-waves', type: 'animated' },
+    { id: 3, name: 'Lavender & Blue', animation: 'bg-lavender-mist', type: 'animated' },
+    { id: 4, name: 'Forest Green', animation: 'bg-forest-dawn', type: 'animated' },
+    { id: 5, name: 'Deep Navy', animation: 'bg-deep-navy', type: 'animated' },
+    { id: 6, name: 'Slate Gray', animation: 'bg-slate-gray', type: 'animated' },
+    { id: 7, name: 'Ocean Deep', animation: 'bg-ocean-deep', type: 'animated' },
+    { id: 8, name: 'Golden Orange', animation: 'bg-autumn-leaves', type: 'animated' },
+    { id: 9, name: 'Purple Dream', animation: 'bg-purple-dream', type: 'animated' },
+    { id: 10, name: 'Mint Fresh', animation: 'bg-mint-fresh', type: 'animated' },
+    { id: 11, name: 'Sunset Pink', animation: 'bg-sunset-pink', type: 'animated' },
+    { id: 12, name: 'Midnight Blue', animation: 'bg-midnight-blue', type: 'animated' },
+    { id: 13, name: 'Soft Coral', animation: 'bg-soft-coral', type: 'animated' },
+    { id: 14, name: 'Sage Green', animation: 'bg-sage-green', type: 'animated' },
+    { id: 15, name: 'Dusty Rose', animation: 'bg-dusty-rose', type: 'animated' },
+    { id: 16, name: 'Ocean Breeze', animation: 'bg-ocean-breeze', type: 'animated' },
+    { id: 17, name: 'Lavender Mist', animation: 'bg-lavender-mist-2', type: 'animated' },
+    { id: 18, name: 'Warm Sand', animation: 'bg-warm-sand', type: 'animated' },
+    { id: 19, name: 'Cool Mint', animation: 'bg-cool-mint', type: 'animated' },
+    { id: 20, name: 'Dusty Blue', animation: 'bg-dusty-blue', type: 'animated' },
+    { id: 21, name: 'Soft Peach', animation: 'bg-soft-peach', type: 'animated' },
+    { id: 22, name: 'Forest Mist', animation: 'bg-forest-mist', type: 'animated' },
+    { id: 23, name: 'Deep Purple', animation: 'bg-deep-purple', type: 'animated' },
+    { id: 24, name: 'Dark Forest', animation: 'bg-dark-forest', type: 'animated' },
+    { id: 25, name: 'Midnight Indigo', animation: 'bg-midnight-indigo', type: 'animated' },
+    { id: 26, name: 'Deep Ocean', animation: 'bg-deep-ocean-2', type: 'animated' },
+    { id: 27, name: 'Dark Slate', animation: 'bg-dark-slate', type: 'animated' },
+    { id: 28, name: 'Burgundy', animation: 'bg-burgundy', type: 'animated' },
+    { id: 29, name: 'Deep Emerald', animation: 'bg-deep-emerald', type: 'animated' },
+    { id: 30, name: 'Dark Sapphire', animation: 'bg-dark-sapphire', type: 'animated' },
+    { id: 31, name: 'Deep Charcoal', animation: 'bg-deep-charcoal', type: 'animated' },
+    { id: 32, name: 'Dark Plum', animation: 'bg-dark-plum', type: 'animated' }
 ];
 
 const videoBackgrounds: VideoBackground[] = [
-    { id: 13, name: 'Rain', url: '/src/assets/videos/rain.mp4', type: 'video' },
-    { id: 14, name: 'Ocean Waves', url: '/src/assets/videos/ocean.mp4', type: 'video' },
-    { id: 15, name: 'Forest Stream', url: '/src/assets/videos/forest_stream.mp4', type: 'video' },
-    { id: 16, name: 'Fireplace', url: '/src/assets/videos/fireplace.mp4', type: 'video' },
-    { id: 17, name: 'Coffee Shop', url: '/src/assets/videos/coffee_shop.mp4', type: 'video' },
-    { id: 18, name: 'City Rain', url: '/src/assets/videos/city_rain.mp4', type: 'video' }
+    { id: 13, name: 'Snow Forest', url: '/src/assets/video/snow_forest.mp4', type: 'video' },
+    { id: 14, name: 'Jellyfish', url: '/src/assets/video/jellyfish.mp4', type: 'video' },
+    { id: 15, name: 'Tide', url: '/src/assets/video/tide.mp4', type: 'video' },
+    { id: 16, name: 'House of Dreams', url: '/src/assets/video/house_of_dreams.mp4', type: 'video' },
+    { id: 17, name: 'Coffee Shop', url: '/src/assets/video/coffee_shop.mp4', type: 'video' },
+    { id: 18, name: 'City Rain', url: '/src/assets/video/city_rain.mp4', type: 'video' }
 ];
 
 const selectedBackground = ref<Background | null>(staticBackgrounds[0]);
@@ -233,146 +255,372 @@ const selectBackground = (background: Background) => {
 </script>
 
 <style>
+/* Base animations */
 @keyframes gradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-@keyframes rainbow {
-    0% { background-color: #ff0000; }
-    20% { background-color: #ff00ff; }
-    40% { background-color: #0000ff; }
-    60% { background-color: #00ffff; }
-    80% { background-color: #00ff00; }
-    100% { background-color: #ff0000; }
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-}
-
-@keyframes wave {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(-25%); }
-    100% { transform: translateX(0); }
-}
-
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
-}
-
-.animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient 15s ease infinite;
-}
-
-.animate-rainbow {
-    animation: rainbow 10s linear infinite;
-}
-
-.animate-twinkle {
-    animation: twinkle 2s ease-in-out infinite;
-}
-
-.animate-wave {
-    animation: wave 10s linear infinite;
-}
-
-.animate-particles {
-    animation: float 6s ease-in-out infinite;
-}
-
-.bg-rainbow {
-    background: linear-gradient(to right, #ff0000, #ff00ff, #0000ff, #00ffff, #00ff00);
-}
-
-.bg-stars {
-    background-color: #1a1a2e;
-    position: relative;
-    overflow: hidden;
-}
-
-.bg-stars::before,
-.bg-stars::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 50px 160px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0));
-    background-repeat: repeat;
-    animation: twinkle 4s ease-in-out infinite;
-}
-
-.bg-stars::after {
-    background-image: 
-        radial-gradient(2px 2px at 150px 150px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 200px 200px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 250px 250px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 300px 300px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 350px 350px, #fff, rgba(0,0,0,0));
-    animation-delay: 2s;
-}
-
-.bg-wave {
-    background: linear-gradient(45deg, #4f46e5, #7c3aed, #2563eb);
-    background-size: 400% 400%;
-}
-
-.bg-particles {
-    background-color: #1a1a2e;
-    position: relative;
-    overflow: hidden;
-}
-
-.bg-particles::before,
-.bg-particles::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        radial-gradient(1px 1px at 10px 10px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 20px 20px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 30px 30px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 40px 40px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 50px 50px, #fff, rgba(0,0,0,0));
-    background-repeat: repeat;
-    animation: float 6s ease-in-out infinite;
-}
-
-.bg-particles::after {
-    background-image: 
-        radial-gradient(1px 1px at 60px 60px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 70px 70px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 80px 80px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 90px 90px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 100px 100px, #fff, rgba(0,0,0,0));
-    animation-delay: 3s;
-}
-
-.animate-pulse-slow {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 @keyframes pulse {
-    0%, 100% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 0.8;
-    }
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+/* Background styles */
+.bg-cozy-sunset {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+.bg-ocean-waves {
+    background: linear-gradient(45deg, #a8edea, #fed6e3);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-lavender-mist {
+    background: linear-gradient(45deg, #e0c3fc, #8ec5fc);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-forest-dawn {
+    background: linear-gradient(45deg, #d4fc79, #96e6a1);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-deep-navy {
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    overflow: hidden;
+}
+
+.bg-deep-navy::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+.bg-ocean-deep {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    overflow: hidden;
+}
+
+.bg-ocean-deep::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 183, 255, 0.15) 0%, transparent 70%);
+    animation: pulse 12s ease-in-out infinite;
+}
+
+.bg-autumn-leaves {
+    background: linear-gradient(45deg, #f6d365, #fda085);
+    background-size: 400% 400%;
+    animation: gradient 25s ease infinite;
+}
+
+.bg-purple-dream {
+    background: linear-gradient(45deg, #a18cd1, #fbc2eb);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-mint-fresh {
+    background: linear-gradient(45deg, #84fab0, #8fd3f4);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-sunset-pink {
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-midnight-blue {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    overflow: hidden;
+}
+
+.bg-midnight-blue::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    animation: pulse 10s ease-in-out infinite;
+}
+
+.bg-slate-gray {
+    background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+    overflow: hidden;
+}
+
+.bg-slate-gray::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    animation: float 10s ease-in-out infinite;
+}
+
+.bg-soft-coral {
+    background: linear-gradient(45deg, #ffd1d1, #ff9ecd);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-sage-green {
+    background: linear-gradient(45deg, #b2d732, #8cc63f);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-dusty-rose {
+    background: linear-gradient(45deg, #e6a4b4, #f8d5e5);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-ocean-breeze {
+    background: linear-gradient(45deg, #a8e6cf, #dcedc1);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-lavender-mist-2 {
+    background: linear-gradient(45deg, #e6e6fa, #b19cd9);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-warm-sand {
+    background: linear-gradient(45deg, #f4d03f, #f5ab35);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-cool-mint {
+    background: linear-gradient(45deg, #98ddca, #d5ecc2);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-dusty-blue {
+    background: linear-gradient(45deg, #b8c6db, #f5f7fa);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-soft-peach {
+    background: linear-gradient(45deg, #ffdab9, #ffb6c1);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-forest-mist {
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
+
+.bg-deep-purple {
+    background: linear-gradient(180deg, #2d1b3d 0%, #1a0f2e 100%);
+    overflow: hidden;
+}
+
+.bg-deep-purple::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.15) 0%, transparent 70%);
+    animation: pulse 10s ease-in-out infinite;
+}
+
+.bg-dark-forest {
+    background: linear-gradient(180deg, #1b4332 0%, #2d6a4f 100%);
+    overflow: hidden;
+}
+
+.bg-dark-forest::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.15) 0%, transparent 70%);
+    animation: pulse 12s ease-in-out infinite;
+}
+
+.bg-midnight-indigo {
+    background: linear-gradient(180deg, #1e1b4b 0%, #312e81 100%);
+    overflow: hidden;
+}
+
+.bg-midnight-indigo::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+.bg-deep-ocean-2 {
+    background: linear-gradient(180deg, #0c4a6e 0%, #0369a1 100%);
+    overflow: hidden;
+}
+
+.bg-deep-ocean-2::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+    animation: pulse 15s ease-in-out infinite;
+}
+
+.bg-dark-slate {
+    background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
+    overflow: hidden;
+}
+
+.bg-dark-slate::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.15) 0%, transparent 70%);
+    animation: pulse 10s ease-in-out infinite;
+}
+
+.bg-burgundy {
+    background: linear-gradient(180deg, #7f1d1d 0%, #991b1b 100%);
+    overflow: hidden;
+}
+
+.bg-burgundy::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+    animation: pulse 12s ease-in-out infinite;
+}
+
+.bg-deep-emerald {
+    background: linear-gradient(180deg, #064e3b 0%, #065f46 100%);
+    overflow: hidden;
+}
+
+.bg-deep-emerald::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+    animation: pulse 10s ease-in-out infinite;
+}
+
+.bg-dark-sapphire {
+    background: linear-gradient(180deg, #172554 0%, #1e3a8a 100%);
+    overflow: hidden;
+}
+
+.bg-dark-sapphire::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+.bg-deep-charcoal {
+    background: linear-gradient(180deg, #18181b 0%, #27272a 100%);
+    overflow: hidden;
+}
+
+.bg-deep-charcoal::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(161, 161, 170, 0.15) 0%, transparent 70%);
+    animation: pulse 12s ease-in-out infinite;
+}
+
+.bg-dark-plum {
+    background: linear-gradient(180deg, #581c87 0%, #6b21a8 100%);
+    overflow: hidden;
+}
+
+.bg-dark-plum::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+    animation: pulse 10s ease-in-out infinite;
+}
+
+/* Custom scrollbar styles */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    padding-right: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Keep horizontal scrollbar hidden */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Add padding to ensure the last tab is fully visible */
+.scrollbar-hide::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 1px;
+    padding-right: 1px;
 }
 </style> 

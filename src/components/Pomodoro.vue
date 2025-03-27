@@ -1,12 +1,15 @@
 <template>
     <div class="relative h-screen w-screen bg-[#1a1a2e] flex flex-col items-center justify-center">
+        <!-- Current Time Display -->
+        <div class="absolute top-4 right-4 z-10">
+            <CurrentTime />
+        </div>
+
         <!-- Logo and Quote Section -->
         <div class="absolute top-8 w-full px-8 flex justify-between items-center z-10">
             <div class="text-white text-2xl font-bold">TokiTimer</div>
             <div class="text-white text-sm italic">
-              <button class="text-white/100 hover:text-white">
-                Need help?
-              </button>
+              {{ currentTime }}
             </div>
         </div>
 
@@ -50,7 +53,7 @@
                 <!-- Session Info -->
                 <div class="mt-8 flex justify-between items-center text-white/70 text-sm">
                     <div>Session 1/4</div>
-                    <div>Focus Time: 25:00</div>
+                    <div>Focus Time: 25:00 - Break Time: 5:00</div>
                 </div>
             </div>
 
@@ -97,6 +100,8 @@
                 </div>
             </div>
         </div>
+
+        
 
         <!-- Background Lofi Study Image with Overlay -->
         <div class="absolute inset-0 z-0">
@@ -149,11 +154,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
 import BackgroundModal from './modals/BackgroundModal.vue';
 import MusicModal from './modals/MusicModal.vue';
 import SoundModal from './modals/SoundModal.vue';
 import SettingsModal from './modals/SettingsModal.vue';
+import CurrentTime from './CurrentTime.vue';
+
+
+// Get current time : Hours and Minutes
 
 interface StaticBackground {
     id: number;
