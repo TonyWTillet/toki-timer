@@ -17,8 +17,8 @@
         <div class="text-center z-10">
             <div class="bg-white/10 backdrop-blur-sm bg-opacity-0 rounded-2xl p-12 shadow-2xl border border-white/20">
                 <div class="text-white mb-8">
-                    <h2 class="text-2xl mb-2 font-semibold">Thursday's all yours, tony.</h2>
-                    <p class="text-xl opacity-90">Keep going!</p>
+                    <h2 class="text-2xl mb-2 font-semibold">Boost your focus, Master your time effortlessly</h2>
+                    <p class="text-xl opacity-90">Configure your session and break times</p>
                 </div>
                 
                 <!-- Timer Display -->
